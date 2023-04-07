@@ -1,6 +1,6 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (active && !(send)) {
-        if (radio.receivedPacket(RadioPacketProperty.SignalStrength) != -75) {
+        if (radio.receivedPacket(RadioPacketProperty.SignalStrength) > 0) {
             led.plotBarGraph(
             radio.receivedPacket(RadioPacketProperty.SignalStrength),
             100
@@ -8,7 +8,7 @@ radio.onReceivedNumber(function (receivedNumber) {
             music.playTone(Math.map(radio.receivedPacket(RadioPacketProperty.SignalStrength), 0, 100, 131, 988), music.beat(BeatFraction.Whole))
         } else {
             basic.showIcon(IconNames.Asleep)
-            music.ringTone(784)
+            music.ringTone(988)
         }
     }
 })
